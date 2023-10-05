@@ -24,5 +24,13 @@ namespace Suzuki_André_Pendu
         {
             InitializeComponent();
         }
+
+        public void Lettre_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            string lettre = button.Content.ToString();
+
+            button.IsEnabled = false;
+        }
     }
 }

@@ -5,8 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Suzuki_André_Pendu"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="André's Pendu" Height="450" Width="800"
+        ResizeMode="NoResize"
+        
+        >
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <!--Margin-->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" Name="ButtonGrid" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Row 0 -->
+            <Button Grid.Row="0" Grid.Column="0" Content="A" Click="Lettre_Click"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="B" Click="Lettre_Click"/>
+            <Button Grid.Row="0" Grid.Column="2" Content="C" Click="Lettre_Click"/>
+            <Button Grid.Row="0" Grid.Column="3" Content="D" Click="Lettre_Click"/>
+            <!-- Row 1 -->                                 
+            <Button Grid.Row="1" Grid.Column="0" Content="E" Click="Lettre_Click"/>
+            <Button Grid.Row="1" Grid.Column="1" Content="F" Click="Lettre_Click"/>
+            <Button Grid.Row="1" Grid.Column="2" Content="G" Click="Lettre_Click"/>
+            <Button Grid.Row="1" Grid.Column="3" Content="H" Click="Lettre_Click"/>
+            <!-- Row 2 -->                                
+            <Button Grid.Row="2" Grid.Column="0" Content="I" Click="Lettre_Click"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="J" Click="Lettre_Click"/>
+            <Button Grid.Row="2" Grid.Column="2" Content="K" Click="Lettre_Click"/>
+            <Button Grid.Row="2" Grid.Column="3" Content="L" Click="Lettre_Click"/>
+            <!-- Row 3 -->                                   
+            <Button Grid.Row="3" Grid.Column="0" Content="M" Click="Lettre_Click"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="N" Click="Lettre_Click"/>
+            <Button Grid.Row="3" Grid.Column="2" Content="O" Click="Lettre_Click"/>
+            <Button Grid.Row="3" Grid.Column="3" Content="P" Click="Lettre_Click"/>
+            <!-- Row 4 -->                                 
+            <Button Grid.Row="4" Grid.Column="0" Content="Q" Click="Lettre_Click"/>
+            <Button Grid.Row="4" Grid.Column="1" Content="R" Click="Lettre_Click"/>
+            <Button Grid.Row="4" Grid.Column="2" Content="S" Click="Lettre_Click"/>
+            <Button Grid.Row="4" Grid.Column="3" Content="T" Click="Lettre_Click"/>
+            <!-- Row 5 -->
+            <Button Grid.Row="5" Grid.Column="0" Content="U" Click="Lettre_Click"/>
+            <Button Grid.Row="5" Grid.Column="1" Content="V" Click="Lettre_Click"/>
+            <Button Grid.Row="5" Grid.Column="2" Content="W" Click="Lettre_Click"/>
+            <Button Grid.Row="5" Grid.Column="3" Content="X" Click="Lettre_Click"/>
+            <!-- Row 6 -->                                 
+            <Button Grid.Row="6" Grid.Column="0" Content="Y" Click="Lettre_Click"/>
+            <Button Grid.Row="6" Grid.Column="1" Content="Z" Click="Lettre_Click"/>
+            <Button Grid.Row="6" Grid.Column="2" Content=""/>
+            <Button Grid.Row="6" Grid.Column="3" Content=""/>
+
+        </Grid>
 
     </Grid>
 </Window>
