@@ -31,6 +31,8 @@ namespace Suzuki_André_Pendu
         string mot_cache;
         int LettersLeft; 
         int Vies;
+        bool Endgame = true;
+
         public void NewGame()
         {
             string ChoisirMot()
@@ -41,6 +43,8 @@ namespace Suzuki_André_Pendu
 
             void CacherMot()
             {
+                mot_cache = "";
+
                 foreach(char c in mot_choisi)
                 {
                     mot_cache += "?";
@@ -48,13 +52,22 @@ namespace Suzuki_André_Pendu
                 TB_Display.Text = mot_cache;
             }
 
+            void ResetButtons()
+            {
+                foreach (var button in ButtonGrid.Children.OfType<Button>())
+                {
+                    button.IsEnabled = true;
+                    button.Background = new SolidColorBrush(Colors.Beige);
+                }
+            }
+            ResetButtons();
+            Endgame = false;
             Vies = 5;
             mot_choisi = ChoisirMot();
             LettersLeft = mot_choisi.Length;
             UpdateVies();
             CacherMot();
-
-
+            TB_Feedback.Text = "Bonne Chance!";
         }
         
         public void UpdateVies()
@@ -62,15 +75,15 @@ namespace Suzuki_André_Pendu
             TB_Feedback2.Text = "Vous avez "+Vies.ToString()+" Vies";    
         }
 
+        //gvjhgj
         public bool LetterMatch(string Letter)
         {
             if (mot_choisi.Contains(Letter))
             {
                 char[] CharArray = mot_cache.ToCharArray();
-
                 List<int> indexes = new List<int>();    
 
-                for (int i = 0; i < mot_choisi.Length-1; i++)
+                for (int i = 0; i < mot_choisi.Length; i++)
                 {
                     if (mot_choisi[i] == Letter[0])
                     {
@@ -98,32 +111,41 @@ namespace Suzuki_André_Pendu
         {
             Button button = (Button)sender;
             string lettre = button.Content.ToString();
-            button.IsEnabled = false;
 
-            if (LetterMatch(lettre))
+            if (Endgame != true)
             {
-                if (LettersLeft > 0) {
-                    TB_Feedback.Text = lettre + " is the right one";
+                button.IsEnabled = false;
+
+                if (LetterMatch(lettre))
+                {
                     button.Background = new SolidColorBrush(Colors.Green);
-                    return;
-                }
-                TB_Feedback.Text = "Vous avez gagné!";
 
+                    if (LettersLeft > 0) {
+                        return;
+                    }
+                    Endgame = true;
+                    TB_Feedback.Text = "Vous avez gagné!";
+                }
+                else
+                {
+                    if (Vies < 0)
+                    {
+                        TB_Feedback.Text = "Vous avez perdu";
+                        Endgame = true;
+                        return;
+                    }
+                    
+                    button.Background = new SolidColorBrush(Colors.Red);
+                    Vies -= 1;
+                    UpdateVies();
+                    
+                }
             }
-            else
-            {
-                TB_Feedback.Text = lettre + " is not the right one";
-                button.Background = new SolidColorBrush(Colors.Red);
-                Vies -= 1;
-                UpdateVies();
-            }
-           
         }
 
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-
             NewGame();
         }
     }

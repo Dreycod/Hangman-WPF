@@ -9,9 +9,7 @@
           TextBlock.Foreground="{TemplateBinding Foreground}" 
           BorderBrush="{TemplateBinding BorderBrush}"
           BorderThickness="{TemplateBinding BorderThickness}">
-
-
-            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
     </ControlTemplate>
     
