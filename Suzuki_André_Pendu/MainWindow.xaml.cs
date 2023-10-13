@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,7 +14,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using (var MesMots = File.OpenText(@"Resources/MotsPendu.txt"))
+{
+    string TxtContent = null;
+    string[] Mots_List = new string[100];
+    int line = 0;
+    do
+    {
+        TxtContent = MesMots.ReadLine();
+        if (TxtContent != null)
+        {
+            Mots_List[line] = TxtContent;
+        }
 
+        line++;
+
+    } while (TxtContent != null);
+}
 namespace Suzuki_André_Pendu
 {
     /// <summary>
@@ -26,7 +43,8 @@ namespace Suzuki_André_Pendu
             InitializeComponent();
             NewGame();
         }
-        private string[] Mots_List = { "CIEL", "UNIVERS", "AMOUR", "FENETRE", "AIMER" };
+
+       private string[] Mots_List = { "CIEL", "UNIVERS", "AMOUR", "FENETRE", "AIMER" };
         string mot_choisi;
         string mot_cache;
         int LettersLeft; 
