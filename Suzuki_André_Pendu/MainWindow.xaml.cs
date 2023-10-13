@@ -14,23 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using (var MesMots = File.OpenText(@"Resources/MotsPendu.txt"))
-{
-    string TxtContent = null;
-    string[] Mots_List = new string[100];
-    int line = 0;
-    do
-    {
-        TxtContent = MesMots.ReadLine();
-        if (TxtContent != null)
-        {
-            Mots_List[line] = TxtContent;
-        }
 
-        line++;
-
-    } while (TxtContent != null);
-}
 namespace Suzuki_André_Pendu
 {
     /// <summary>
@@ -41,18 +25,27 @@ namespace Suzuki_André_Pendu
         public MainWindow()
         {
             InitializeComponent();
+            ReadFile();
             NewGame();
         }
 
-       private string[] Mots_List = { "CIEL", "UNIVERS", "AMOUR", "FENETRE", "AIMER" };
         string mot_choisi;
         string mot_cache;
-        int LettersLeft; 
+
+        int LettersLeft;
         int Vies;
-        bool Endgame = true;
+
+        string chemin = @"Resources/MotsPendu.txt";
+        string[] Mots_List;
+
+        public void ReadFile()
+        {
+            Mots_List = File.ReadAllLines(chemin);
+        }
 
         public void NewGame()
         {
+
             string ChoisirMot()
             {
                 Random rnd = new Random();
@@ -69,17 +62,8 @@ namespace Suzuki_André_Pendu
                 }
                 TB_Display.Text = mot_cache;
             }
-
-            void ResetButtons()
-            {
-                foreach (var button in ButtonGrid.Children.OfType<Button>())
-                {
-                    button.IsEnabled = true;
-                    button.Background = new SolidColorBrush(Colors.Beige);
-                }
-            }
-            ResetButtons();
-            Endgame = false;
+            
+            EnableButtons();
             Vies = 5;
             mot_choisi = ChoisirMot();
             LettersLeft = mot_choisi.Length;
@@ -87,13 +71,27 @@ namespace Suzuki_André_Pendu
             CacherMot();
             TB_Feedback.Text = "Bonne Chance!";
         }
-        
+        public void EnableButtons()
+        {
+            foreach (var button in ButtonGrid.Children.OfType<Button>())
+            {
+                button.IsEnabled = true;
+                button.Background = new SolidColorBrush(Colors.Beige);
+            }
+        }
+        public void DisableButtons()
+        {
+            foreach (var button in ButtonGrid.Children.OfType<Button>())
+            {
+                button.IsEnabled = false;
+                button.Background = new SolidColorBrush(Colors.Gray);
+            }
+        }
         public void UpdateVies()
         {
             TB_Feedback2.Text = "Vous avez "+Vies.ToString()+" Vies";    
         }
 
-        //gvjhgj
         public bool LetterMatch(string Letter)
         {
             if (mot_choisi.Contains(Letter))
@@ -130,33 +128,29 @@ namespace Suzuki_André_Pendu
             Button button = (Button)sender;
             string lettre = button.Content.ToString();
 
-            if (Endgame != true)
+            button.IsEnabled = false;
+
+            if (LetterMatch(lettre))
             {
-                button.IsEnabled = false;
+                button.Background = new SolidColorBrush(Colors.Green);
 
-                if (LetterMatch(lettre))
-                {
-                    button.Background = new SolidColorBrush(Colors.Green);
-
-                    if (LettersLeft > 0) {
-                        return;
-                    }
-                    Endgame = true;
-                    TB_Feedback.Text = "Vous avez gagné!";
+                if (LettersLeft > 0) {
+                    return;
                 }
-                else
+                DisableButtons();
+                TB_Feedback.Text = "Vous avez gagné!";
+            }
+            else
+            {
+                button.Background = new SolidColorBrush(Colors.Red);
+                Vies -= 1;
+                UpdateVies();
+
+                if (Vies <= 0)
                 {
-                    if (Vies < 0)
-                    {
-                        TB_Feedback.Text = "Vous avez perdu";
-                        Endgame = true;
-                        return;
-                    }
-                    
-                    button.Background = new SolidColorBrush(Colors.Red);
-                    Vies -= 1;
-                    UpdateVies();
-                    
+                    TB_Feedback.Text = "Vous avez perdu";
+                    DisableButtons();
+                    return;
                 }
             }
         }
