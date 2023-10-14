@@ -4,7 +4,6 @@
     <SolidColorBrush x:Key="Correct_Btn" Color="#647953"/>
     <SolidColorBrush x:Key="Wrong_Btn" Color="#8E5151" />
     <SolidColorBrush x:Key="Default_Btn" Color="#FF8A6948"/>
-    <SolidColorBrush x:Key="Disabled_Btn" Color="#FF897760"/>
 
     <!-- Drop Shadow Effects-->
     <DropShadowEffect x:Key="ButtonTxt" Color="#FFE3AE6A" Direction="-25" ShadowDepth="2" Opacity="0.5" BlurRadius="10"/>
@@ -41,7 +40,7 @@
     </Style>
 
     <Style x:Key="Main_TB" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="60"/>
+        <Setter Property="FontSize" Value="50"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Ink Free"/>
         <Setter Property="TextAlignment" Value="Center"/>
@@ -49,45 +48,27 @@
         <Setter Property="Foreground" Value="White"/>
     </Style>
 
-    <Style x:Key="LettreBtn" TargetType="Button">
+    <Style x:Key="Hang_Btn" TargetType="Button">
         <Setter Property="Background" Value="#FF8A6948"/>
-        <Setter Property="BorderBrush" Value="#FFE3AE6A"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Margin" Value="1.5"/>
-        <Setter Property="Template" Value="{StaticResource ResetTemplate}"/>
+
         <Setter Property="TextBlock.Foreground" Value="#FFCCA676"/>
-        <Setter Property="TextBlock.FontSize" Value="27"/>
+        <Setter Property="TextBlock.FontSize" Value="25"/>
         <Setter Property="TextBlock.FontWeight" Value="Bold"/>
         <Setter Property="TextBlock.Effect" Value="{StaticResource ButtonTxt}"/>
+
+        <Setter Property="BorderBrush" Value="#FFE3AE6A"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="1.5"/>
+
+        <Setter Property="Template" Value="{StaticResource ResetTemplate}"/>
         <Setter Property="Cursor" Value="Hand"/>
+
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#FFC7A983"/>
-                <Setter Property="Foreground" Value="#FFC7A983"/>
+                <Setter Property="Foreground" Value="White"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-
-
-    <Style x:Key="FunctionBtn" TargetType="Button">
-        <Setter Property="Background" Value="#FF8A6948"/>
-        <Setter Property="BorderBrush" Value="#FFE3AE6A"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Margin" Value="1.5"/>
-        <Setter Property="Template" Value="{StaticResource ResetTemplate}"/>
-        <Setter Property="TextBlock.Foreground" Value="#FFCCA676"/>
-        <Setter Property="TextBlock.FontSize" Value="15"/>
-        <Setter Property="TextBlock.FontWeight" Value="Bold"/>
-        <Setter Property="TextBlock.Effect" Value="{StaticResource ButtonTxt}"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FFC7A983"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
 
 </ResourceDictionary>

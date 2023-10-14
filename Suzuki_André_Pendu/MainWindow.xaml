@@ -31,7 +31,7 @@
             
             <TextBlock Grid.Column="1" Name="TB_Title" Text="Hangman: The French" Style="{StaticResource Title}"/>
 
-            <TextBlock Grid.Column="0" Name="TB_Score" Text="SCORE: 500" Style="{StaticResource Display_TB}"/>
+            <TextBlock Grid.Column="0" Name="TB_Score" Text="SCORE: 0" Style="{StaticResource Display_TB}"/>
             <TextBlock Grid.Column="2" Name="TB_Wins" Text="W: 1" Style="{StaticResource Display_TB}"/>
             <TextBlock Grid.Column="3" Name="TB_Losses" Text="L: 1" Style="{StaticResource Display_TB}"/>
         </Grid>
@@ -66,10 +66,10 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button Name="NewGame_Btn" Grid.Row="0" Click="NewGame_Click" Content="NEW GAME" Style="{StaticResource FunctionBtn}"/>
-                <Button Name="Hint_Btn" Grid.Row="1" Click="NewGame_Click" Content="HINT" Style="{StaticResource FunctionBtn}"/>
-                <Button Name="Timer_Btn" Grid.Row="2" Click="NewGame_Click" Content="TIMER" Style="{StaticResource FunctionBtn}"/>
-                <Button Name="Reverse_Btn" Grid.Row="3" Click="NewGame_Click" Content="REVERSE" Style="{StaticResource FunctionBtn}"/>
+                <Button Name="NewGame_Btn" Grid.Row="0" Click="NewGame_Click" Content="NEW GAME" FontSize="16" Style="{StaticResource Hang_Btn}"/>
+                <Button Name="Hint_Btn" Grid.Row="1"  Content="HINT" FontSize="16" Style="{StaticResource Hang_Btn}"/>
+                <Button Name="Timer_Btn" Grid.Row="2"  Content="TIMER" FontSize="16" Style="{StaticResource Hang_Btn}"/>
+                <Button Name="Reverse_Btn" Grid.Row="3" Content="REVERSE" FontSize="16" Style="{StaticResource Hang_Btn}"/>
             </Grid>
 
             <!-- ****************************************** Letter Button Grid ******************************************-->
@@ -92,39 +92,39 @@
                 </Grid.RowDefinitions>
                 
                 <!-- Row 0 -->
-                <Button Grid.Row="0" Grid.Column="0" Content="A" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="0" Grid.Column="1" Content="B" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="0" Grid.Column="2" Content="C" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="0" Grid.Column="3" Content="D" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <!-- Row 1 -->    
-                <Button Grid.Row="0" Grid.Column="4" Content="E" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="0" Grid.Column="5" Content="F" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="0" Grid.Column="6" Content="G" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="0" Grid.Column="7" Content="H" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <!-- Row 2 -->   
-                <Button Grid.Row="0" Grid.Column="8" Content="I" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="1" Grid.Column="0" Content="J" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="1" Grid.Column="1" Content="K" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="1" Grid.Column="2" Content="L" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <!-- Row 3 -->    
-                <Button Grid.Row="1" Grid.Column="3" Content="M" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="1" Grid.Column="4" Content="N" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="1" Grid.Column="5" Content="O" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="1" Grid.Column="6" Content="P" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <!-- Row 4 -->    
-                <Button Grid.Row="1" Grid.Column="7" Content="Q" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="1" Grid.Column="8" Content="R" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="2" Grid.Column="0" Content="S" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="2" Grid.Column="1" Content="T" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
+                <Button Grid.Row="0" Grid.Column="0" Content="A" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="0" Grid.Column="1" Content="B" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="0" Grid.Column="2" Content="C" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="0" Grid.Column="3" Content="D" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <!-- Row 1 -->
+                <Button Grid.Row="0" Grid.Column="4" Content="E" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="0" Grid.Column="5" Content="F" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="0" Grid.Column="6" Content="G" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="0" Grid.Column="7" Content="H" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <!-- Row 2 -->
+                <Button Grid.Row="0" Grid.Column="8" Content="I" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="1" Grid.Column="0" Content="J" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="1" Grid.Column="1" Content="K" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="1" Grid.Column="2" Content="L" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <!-- Row 3 -->
+                <Button Grid.Row="1" Grid.Column="3" Content="M" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="1" Grid.Column="4" Content="N" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="1" Grid.Column="5" Content="O" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="1" Grid.Column="6" Content="P" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <!-- Row 4 -->
+                <Button Grid.Row="1" Grid.Column="7" Content="Q" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="1" Grid.Column="8" Content="R" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="2" Grid.Column="0" Content="S" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="2" Grid.Column="1" Content="T" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
                 <!-- Row 5 -->
-                <Button Grid.Row="2" Grid.Column="2" Content="V" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="2" Grid.Column="3" Content="U" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="2" Grid.Column="4" Content="W" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="2" Grid.Column="5" Content="X" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
+                <Button Grid.Row="2" Grid.Column="2" Content="V" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="2" Grid.Column="3" Content="U" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="2" Grid.Column="4" Content="W" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="2" Grid.Column="5" Content="X" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
                 <!-- Row 6 -->
-                <Button Grid.Row="2" Grid.Column="6" Content="Y" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="2" Grid.Column="7" Content="Z" Click="LettreBtn_Click" Style="{StaticResource LettreBtn}"/>
-                <Button Grid.Row="2" Grid.Column="8" Style="{StaticResource LettreBtn}"/>
+                <Button Grid.Row="2" Grid.Column="6" Content="Y" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="2" Grid.Column="7" Content="Z" Click="LettreBtn_Click" Style="{StaticResource Hang_Btn}"/>
+                <Button Grid.Row="2" Grid.Column="8" Content =" " Style="{StaticResource Hang_Btn}"/>
             </Grid>
         </Grid>
 
