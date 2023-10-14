@@ -33,6 +33,7 @@ namespace Suzuki_André_Pendu
         string mot_cache;
 
         int LettersLeft;
+        int StartVies = 7;
         int Vies;
 
         string chemin = @"Resources/MotsPendu.txt";
@@ -63,33 +64,39 @@ namespace Suzuki_André_Pendu
                 TB_Display.Text = mot_cache;
             }
             
-            EnableButtons();
-            Vies = 5;
+            ChangeButtonState(true);
+            Vies = StartVies;
             mot_choisi = ChoisirMot();
             LettersLeft = mot_choisi.Length;
             UpdateVies();
             CacherMot();
-            TB_Feedback.Text = "Bonne Chance!";
+            //TB_Feedback.Text = "Bonne Chance!";
         }
-        public void EnableButtons()
+        public void ChangeButtonState(bool Value)
         {
-            foreach (var button in ButtonGrid.Children.OfType<Button>())
+            if (Value == true)
             {
-                button.IsEnabled = true;
-                button.Background = new SolidColorBrush(Colors.Beige);
+                foreach (var button in ButtonGrid.Children.OfType<Button>())
+                {
+                    button.IsEnabled = true;
+                    button.Background = this.TryFindResource("Default_Btn") as SolidColorBrush;
+                }
+            }
+            else 
+            {
+                foreach (var button in ButtonGrid.Children.OfType<Button>())
+                {
+                    button.IsEnabled = false;
+                    button.Background = this.TryFindResource("Disabled_Btn") as SolidColorBrush;
+                }
             }
         }
-        public void DisableButtons()
-        {
-            foreach (var button in ButtonGrid.Children.OfType<Button>())
-            {
-                button.IsEnabled = false;
-                button.Background = new SolidColorBrush(Colors.Gray);
-            }
-        }
+
         public void UpdateVies()
         {
-            TB_Feedback2.Text = "Vous avez "+Vies.ToString()+" Vies";    
+            Uri resourceUri = new Uri(@"Resources/Hangman/" + (StartVies-Vies).ToString() + ".gif", UriKind.Relative);
+            Img_Pendu.Source =  new BitmapImage(resourceUri);
+            TB_Lifes.Text = "Lifes: "+Vies.ToString();    
         }
 
         public bool LetterMatch(string Letter)
@@ -132,25 +139,28 @@ namespace Suzuki_André_Pendu
 
             if (LetterMatch(lettre))
             {
-                button.Background = new SolidColorBrush(Colors.Green);
-
-                if (LettersLeft > 0) {
-                    return;
-                }
-                DisableButtons();
-                TB_Feedback.Text = "Vous avez gagné!";
+                button.Background = this.TryFindResource("Correct_Btn") as SolidColorBrush;
             }
             else
             {
-                button.Background = new SolidColorBrush(Colors.Red);
+                button.Background = this.TryFindResource("Wrong_Btn") as SolidColorBrush;
                 Vies -= 1;
                 UpdateVies();
+            }
 
-                if (Vies <= 0)
+            if (LettersLeft == 0 | Vies == 0)
+            {
+                ChangeButtonState(false);
+                if (Vies > 0)
                 {
-                    TB_Feedback.Text = "Vous avez perdu";
-                    DisableButtons();
-                    return;
+                    // Win
+                    //TB_Feedback.Text = "Vous avez gagné!";
+
+                }
+                else
+                {
+                    // Lose
+                    //TB_Feedback.Text = "Vous avez perdu!";
                 }
             }
         }

@@ -5,16 +5,42 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\Pendu.ico</ApplicationIcon>
+    <PackageIcon>Pendu.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Hangman\0.gif" />
+    <None Remove="Resources\Hangman\1.gif" />
+    <None Remove="Resources\Hangman\2.gif" />
+    <None Remove="Resources\Hangman\3.gif" />
+    <None Remove="Resources\Hangman\4.gif" />
+    <None Remove="Resources\Hangman\5.gif" />
+    <None Remove="Resources\Hangman\6.gif" />
+    <None Remove="Resources\Hangman\7.gif" />
     <None Remove="Resources\MotsPendu.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Hangman\0.gif" />
+    <Resource Include="Resources\Hangman\1.gif" />
+    <Resource Include="Resources\Hangman\2.gif" />
+    <Resource Include="Resources\Hangman\3.gif" />
+    <Resource Include="Resources\Hangman\4.gif" />
+    <Resource Include="Resources\Hangman\5.gif" />
+    <Resource Include="Resources\Hangman\6.gif" />
+    <Resource Include="Resources\Hangman\7.gif" />
     <Content Include="Resources\MotsPendu.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Pendu.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Pendu.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
