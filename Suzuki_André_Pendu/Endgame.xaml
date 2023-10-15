@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Suzuki_André_Pendu"
         mc:Ignorable="d"
-        Title="Endgame" Height="450" Width="800">
+        Title="Endgame" Height="300" Width="400"
+        ResizeMode="NoResize"
+        Background="#31474C"
+        >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
+        <TextBlock x:Name="Word_TB" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="It was: Hello"  Style="{StaticResource Display_TB}"/>
+        <TextBlock x:Name="Message_TB" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Message" FontSize="35" Style="{StaticResource Title}"/>
+
+        <TextBlock x:Name="Score_TB" Grid.Row="2" Grid.Column="0" Text="Score: 0" Style="{StaticResource Display_TB}"/>
+        <TextBlock x:Name="Lifes_TB" Grid.Row="2" Grid.Column="1" Text="Lifes: 0" Style="{StaticResource Display_TB}"/>
+        <TextBlock x:Name="Wins_TB" Grid.Row="3" Grid.Column="0" Text="Wins: 0" Style="{StaticResource Display_TB}"/>
+        <TextBlock x:Name="Losses_TB" Grid.Row="3" Grid.Column="1" Text="Losses: 0" Style="{StaticResource Display_TB}"/>
+        <Button x:Name="NextGame_Btn" Grid.Row="4" Grid.Column="0" Content="Next" Style="{StaticResource Hang_Btn}" Margin="30,10,30,10" Click="NextGame_click"/>
+        <Button x:Name="Restart_Btn" Grid.Row="4" Grid.Column="1" Content="New game" Style="{StaticResource Hang_Btn}" Margin="30,10,30,10" Click="NextGame_click"/>
     </Grid>
 </Window>

@@ -32,8 +32,8 @@
             <TextBlock Grid.Column="1" Name="TB_Title" Text="Hangman: The French" Style="{StaticResource Title}"/>
 
             <TextBlock Grid.Column="0" Name="TB_Score" Text="SCORE: 0" Style="{StaticResource Display_TB}"/>
-            <TextBlock Grid.Column="2" Name="TB_Wins" Text="W: 1" Style="{StaticResource Display_TB}"/>
-            <TextBlock Grid.Column="3" Name="TB_Losses" Text="L: 1" Style="{StaticResource Display_TB}"/>
+            <TextBlock Grid.Column="2" Name="TB_Wins" Text="W: 0" Style="{StaticResource Display_TB}"/>
+            <TextBlock Grid.Column="3" Name="TB_Losses" Text="L: 0" Style="{StaticResource Display_TB}"/>
         </Grid>
         <!-- ****************************************** Middle Grid ******************************************-->
         <Grid Grid.Row="1" Grid.Column="0" Name="Middle_Grid">
