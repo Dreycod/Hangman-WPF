@@ -17,7 +17,6 @@ using System.Windows.Shapes;
 using System.Reflection.Metadata;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
-using System.Diagnostics.Eventing.Reader;
 
 namespace Suzuki_André_Pendu
 {
@@ -74,6 +73,7 @@ namespace Suzuki_André_Pendu
         public void NewGame(bool IsNextGame)
         {
             GameEnded = false;
+            isWordReversed = false;
 
             EnableKeyboard(true);
             EnableSideBar(true);
@@ -93,12 +93,6 @@ namespace Suzuki_André_Pendu
             UpdateScore();
             UpdateVies();
             CacherMot();
-
-            if (isWordReversed)
-            {
-                isWordReversed = false;
-                ReverseWord();
-            }
         }
         private void InitializeGameData()
         {
@@ -206,7 +200,7 @@ namespace Suzuki_André_Pendu
             mot_choisi = new string(CharArray_2);
 
             TB_Display.Text = mot_cache;
-            isWordReversed = !isWordReversed;
+            isWordReversed = true;
         }
 
         private Char[] ReplaceLetter(string Letter)
@@ -249,7 +243,7 @@ namespace Suzuki_André_Pendu
 
         public void UpdateScore(int num = 0)
         {
-            if (isWordReversed && num > 0)
+            if (isWordReversed)
             {
                 num *= 2; // 2x points if word is reversed
             }
@@ -327,10 +321,6 @@ namespace Suzuki_André_Pendu
             foreach (var button in Functionalities_Grid.Children.OfType<Button>())
             {
                 button.IsEnabled = Value;
-                if (Value == true)
-                {
-                    button.Background = this.TryFindResource("Default_Btn") as SolidColorBrush;
-                }
             }
         }
 
@@ -367,8 +357,6 @@ namespace Suzuki_André_Pendu
         {
             Button btn = (Button)sender;
             btn.IsEnabled = false;
-            btn.Background = this.TryFindResource("Disabled_Btn") as SolidColorBrush;
-
 
             int index = mot_cache.IndexOf('?');
 
@@ -385,16 +373,8 @@ namespace Suzuki_André_Pendu
         private void Reverse_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
+            btn.IsEnabled = false;
             ReverseWord();
-
-            if (isWordReversed)
-            {
-                btn.Background = this.TryFindResource("Correct_Btn") as SolidColorBrush;
-            }
-            else
-            {
-                btn.Background = this.TryFindResource("Default_Btn") as SolidColorBrush;
-            }
         }
     }
 }
