@@ -396,5 +396,22 @@ namespace Suzuki_André_Pendu
                 btn.Background = this.TryFindResource("Default_Btn") as SolidColorBrush;
             }
         }
+
+        private void Info_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.IsEnabled = false;
+            btn.Background = this.TryFindResource("Disabled_Btn") as SolidColorBrush;
+
+            InfoWindow infoWindow = new InfoWindow();   
+            infoWindow.Show();
+            infoWindow.Closed += InfoWindow_Closed; 
+
+            void InfoWindow_Closed(object sender, EventArgs e)
+            {
+                btn.IsEnabled = true;
+                btn.Background = this.TryFindResource("Default_Btn") as SolidColorBrush;
+            }
+        }
     }
 }

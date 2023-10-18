@@ -25,8 +25,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2.1*"/>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.37*"/>
+                <ColumnDefinition Width="0.37*"/>
+                <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
             
             <!-- Row 0 -->
@@ -37,6 +38,8 @@
             <TextBlock Grid.Column="2" Name="TB_Wins" Text="W: 0" Style="{StaticResource Display_TB}"/>
             <!-- Row 3 -->
             <TextBlock Grid.Column="3" Name="TB_Losses" Text="L: 0" Style="{StaticResource Display_TB}"/>
+            <!-- Row 4 -->
+            <Button Name="Info_Btn" Grid.Column="4" Click="Info_Click" Content="?" FontSize="30" Margin="8" Style="{StaticResource Hang_Btn}"/>
         </Grid>
         <!-- ****************************************** Middle Grid ******************************************-->
         <Grid Grid.Row="1" Grid.Column="0" Name="Middle_Grid">
