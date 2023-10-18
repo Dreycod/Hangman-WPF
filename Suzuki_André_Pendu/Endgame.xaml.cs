@@ -22,41 +22,38 @@ namespace Suzuki_André_Pendu
         public Endgame()
         {
             InitializeComponent();
-            WindowOpened();
+            UpdateScoreboard();
         }
-
-        private void WindowOpened()
-        {
-            UpdateText();
-        }
-        public void UpdateText()
+        //---------------------------------- Constructor Functions -----------------------------------
+        public void UpdateScoreboard()
         {
             MainWindow main = (MainWindow)Application.Current.MainWindow;
 
             int score = main.Score;
             int wins = main.Wins;
             int losses = main.Losses;
+            string word = main.mot_choisi;
 
             Score_TB.Text = "Score: "+score.ToString();
             Wins_TB.Text = "Wins: "+wins.ToString();
             Losses_TB.Text = "Losses: "+losses.ToString();
             Lifes_TB.Text = "Lifes: "+main.Vies.ToString();
-            Word_TB.Text = "It was: "+main.mot_choisi;
-        }
-        private void NextGame_click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            Button button = (Button)sender;
-            bool Next = false;
 
-            if (button.Name == "NextGame_Btn")
+            if (main.isWordReversed)
             {
-                Next = true;
+                word = ReverseWord(main.mot_choisi);
             }
-            main.NewGame(Next);
-            this.Close();
-        }
 
+            Word_TB.Text = "It was: " + word;
+           
+        }
+        //---------------------------------- Utility Functions -----------------------------------
+        private string ReverseWord(string Word)
+        {
+            char[] CharArray = Word.ToCharArray();
+            Array.Reverse(CharArray);
+            return new string(CharArray);
+        }
         public void IsWin(bool Value)
         {
             if (Value)
@@ -69,6 +66,23 @@ namespace Suzuki_André_Pendu
                 Word_TB.Foreground = this.TryFindResource("Wrong_Btn") as SolidColorBrush;
                 Message_TB.Foreground = new SolidColorBrush(Colors.Red);
             }
+        }
+        //---------------------------------- Click Functions -----------------------------------
+        private void NewRound_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            Button button = (Button)sender;
+
+            if (button.Name == "NextGame_Btn")
+            {
+                main.NewGame(true);
+            }
+            else
+            {
+                main.NewGame(false);
+            }
+
+            this.Close();
         }
     }
 }

@@ -9,6 +9,7 @@
         ResizeMode="NoResize"
         Background="#31474C"
         >
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -22,15 +23,18 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+        <!-- Row 0 -->
         <TextBlock x:Name="Word_TB" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="It was: Hello"  Style="{StaticResource Display_TB}"/>
+        <!-- Row 1 -->
         <TextBlock x:Name="Message_TB" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Message" FontSize="35" Style="{StaticResource Title}"/>
-
+        <!-- Row 2 -->        
         <TextBlock x:Name="Score_TB" Grid.Row="2" Grid.Column="0" Text="Score: 0" Style="{StaticResource Display_TB}"/>
         <TextBlock x:Name="Lifes_TB" Grid.Row="2" Grid.Column="1" Text="Lifes: 0" Style="{StaticResource Display_TB}"/>
+        <!-- Row 3 -->
         <TextBlock x:Name="Wins_TB" Grid.Row="3" Grid.Column="0" Text="Wins: 0" Style="{StaticResource Display_TB}"/>
         <TextBlock x:Name="Losses_TB" Grid.Row="3" Grid.Column="1" Text="Losses: 0" Style="{StaticResource Display_TB}"/>
-        <Button x:Name="NextGame_Btn" Grid.Row="4" Grid.Column="0" Content="Next" Style="{StaticResource Hang_Btn}" Margin="30,10,30,10" Click="NextGame_click"/>
-        <Button x:Name="Restart_Btn" Grid.Row="4" Grid.Column="1" Content="New game" Style="{StaticResource Hang_Btn}" Margin="30,10,30,10" Click="NextGame_click"/>
+        <!-- Row 4 -->
+        <Button x:Name="NextGame_Btn" Grid.Row="4" Grid.Column="0" Content="Next" Style="{StaticResource Hang_Btn}" Margin="30,10,30,10" Click="NewRound_Click"/>
+        <Button x:Name="Restart_Btn" Grid.Row="4" Grid.Column="1" Content="New game" Style="{StaticResource Hang_Btn}" Margin="30,10,30,10" Click="NewRound_Click"/>
     </Grid>
 </Window>

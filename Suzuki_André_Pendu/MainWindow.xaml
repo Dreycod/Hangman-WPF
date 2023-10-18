@@ -29,23 +29,33 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             
-            <TextBlock Grid.Column="1" Name="TB_Title" Text="Hangman: The French" Style="{StaticResource Title}"/>
-
+            <!-- Row 0 -->
             <TextBlock Grid.Column="0" Name="TB_Score" Text="SCORE: 0" Style="{StaticResource Display_TB}"/>
+            <!-- Row 1 -->
+            <TextBlock Grid.Column="1" Name="TB_Title" Text="Hangman: The French" Style="{StaticResource Title}"/>
+            <!-- Row 2 -->
             <TextBlock Grid.Column="2" Name="TB_Wins" Text="W: 0" Style="{StaticResource Display_TB}"/>
+            <!-- Row 3 -->
             <TextBlock Grid.Column="3" Name="TB_Losses" Text="L: 0" Style="{StaticResource Display_TB}"/>
         </Grid>
         <!-- ****************************************** Middle Grid ******************************************-->
         <Grid Grid.Row="1" Grid.Column="0" Name="Middle_Grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.45*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2.1*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <Image x:Name="Img_Pendu" Grid.Column="2" Source="./Resources/Hangman/0.gif"/>
-            <!-- ****************************************** MainGame Grid ******************************************-->
-            <TextBlock Name="TB_Display" Grid.Column="1" Text="Test" Style="{StaticResource Main_TB}"/>
+            <!-- Row 0 -->
+                <!-- Column 0 -->
+            <ProgressBar Name="Timer_ProgressBar" Grid.Column="1" Value="10" Minimum="0" Maximum="60" Margin="40,0,40,50" Style="{StaticResource Timer_Bar}"/>
+                <!-- Column 1 -->
+            <Image x:Name="Img_Pendu" Grid.Column="2" Grid.RowSpan="2" Source="./Resources/Hangman/0.gif"/>
+            <!-- Row 1 -->
+            <TextBlock Name="TB_Display" Grid.Column="1" Grid.Row="1" Text="Test" Style="{StaticResource Main_TB}"/>
         </Grid>
         
         <!-- ****************************************** Bottom Grid ******************************************-->
@@ -55,21 +65,22 @@
                 <ColumnDefinition Width="2.1*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
+            <!-- Row 0 -->
             <TextBlock Grid.Column="0" Name="TB_Lifes" Text="Lifes: 5" Style="{StaticResource Display_TB}"/>
-            
+            <!-- ****************************************** Side Bar Grid ******************************************-->
             <Grid Grid.Column="2" Name="Functionalities_Grid" Margin="30,10,30,10" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
+                
+                <!-- Row 0 -->
                 <Button Name="NewGame_Btn" Grid.Row="0" Click="NewGame_Click" Content="NEW GAME" FontSize="16" Style="{StaticResource Hang_Btn}"/>
-                <Button Name="Hint_Btn" Grid.Row="1"  Content="HINT" FontSize="16" Style="{StaticResource Hang_Btn}"/>
-                <Button Name="Timer_Btn" Grid.Row="2"  Content="TIMER" FontSize="16" Style="{StaticResource Hang_Btn}"/>
-                <Button Name="Reverse_Btn" Grid.Row="3" Content="REVERSE" FontSize="16" Style="{StaticResource Hang_Btn}"/>
+                <!-- Row 1 -->
+                <Button Name="Hint_Btn" Grid.Row="1" Click="Hint_Click" Content="HINT" FontSize="16" Style="{StaticResource Hang_Btn}"/>
+                <!-- Row 2 -->
+                <Button Name="Reverse_Btn" Grid.Row="2" Click="Reverse_Click" Content="REVERSE" FontSize="16" Style="{StaticResource Hang_Btn}"/>
             </Grid>
 
             <!-- ****************************************** Letter Button Grid ******************************************-->
