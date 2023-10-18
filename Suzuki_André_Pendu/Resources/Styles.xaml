@@ -4,6 +4,7 @@
     <SolidColorBrush x:Key="Correct_Btn" Color="#647953"/>
     <SolidColorBrush x:Key="Wrong_Btn" Color="#8E5151" />
     <SolidColorBrush x:Key="Default_Btn" Color="#FF8A6948"/>
+    <SolidColorBrush x:Key="Disabled_Btn" Color="#787800"/>
     <!-- Drop Shadow Effects-->
     <DropShadowEffect x:Key="ButtonTxt" Color="#FFE3AE6A" Direction="-25" ShadowDepth="3" Opacity="0.5" BlurRadius="10"/>
     <!-- Control Templates-->
