@@ -5,7 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Resources\Pendu.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icon\Pendu.ico</ApplicationIcon>
     <PackageIcon>Pendu.png</PackageIcon>
   </PropertyGroup>
 
@@ -33,11 +33,11 @@
     <Content Include="Resources\MotsPendu.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Pendu.ico" />
+    <Content Include="Resources\Icon\Pendu.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Resources\Pendu.png">
+    <None Update="Resources\Icon\Pendu.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Suzuki_André_Pendu.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,41 +20,66 @@ namespace Suzuki_André_Pendu
     /// </summary>
     public partial class Endgame : Window
     {
-        public Endgame()
+        //---------------------------------- Class Variables -----------------------------------
+        private GameManager _GameManager;
+
+        //---------------------------------- Constructor -----------------------------------
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Endgame"/> class.
+        /// </summary>
+        /// <param name="gameManager"></param>
+        public Endgame(GameManager gameManager)
         {
             InitializeComponent();
+            _GameManager = gameManager;
             UpdateScoreboard();
         }
-        //---------------------------------- Constructor Functions -----------------------------------
+
+        /// <summary>
+        /// Updates the scoreboard.
+        /// </summary>
         public void UpdateScoreboard()
         {
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            // Variables
+            int score = _GameManager.Score;
+            int wins = _GameManager.Wins;
+            int losses = _GameManager.Losses;
+            string word = _GameManager.mot_choisi;
 
-            int score = main.Score;
-            int wins = main.Wins;
-            int losses = main.Losses;
-            string word = main.mot_choisi;
-
+            // Update TextBlocks
             Score_TB.Text = "Score: "+score.ToString();
             Wins_TB.Text = "Wins: "+wins.ToString();
             Losses_TB.Text = "Losses: "+losses.ToString();
-            Lifes_TB.Text = "Lifes: "+main.Vies.ToString();
+            Lifes_TB.Text = "Lifes: "+ _GameManager.Vies.ToString();
 
-            if (main.isWordReversed)
+            // Reverse Word if necessary
+            if (_GameManager.isWordReversed)
             {
-                word = ReverseWord(main.mot_choisi);
+                word = ReverseWord(_GameManager.mot_choisi);
             }
 
+            // Update Word TextBlock
             Word_TB.Text = "It was: " + word;
-           
         }
         //---------------------------------- Utility Functions -----------------------------------
+
+        /// <summary>
+        /// Returns the specified word in reverse.
+        /// </summary>
+        /// <param name="Word"></param>
+        /// <returns> the reversed word. </returns>
         private string ReverseWord(string Word)
         {
             char[] CharArray = Word.ToCharArray();
             Array.Reverse(CharArray);
             return new string(CharArray);
         }
+
+        /// <summary>
+        /// Sets the color of the Word_TB depending on the value.
+        /// </summary>
+        /// <param name="Value"></param>
         public void IsWin(bool Value)
         {
             if (Value)
@@ -67,19 +93,24 @@ namespace Suzuki_André_Pendu
                 Message_TB.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
-        //---------------------------------- Click Functions -----------------------------------
+
+        //---------------------------------- Events -----------------------------------
+
+        /// <summary>
+        /// Whenever a player clicks Next Game or New Round, this function is called.
+        /// Restarts or plays the next game.
+        /// </summary>
         private void NewRound_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
             Button button = (Button)sender;
 
             if (button.Name == "NextGame_Btn")
             {
-                main.NewGame(true);
+                _GameManager.NewGame(true);
             }
             else
             {
-                main.NewGame(false);
+                _GameManager.NewGame(false);
             }
 
             this.Close();

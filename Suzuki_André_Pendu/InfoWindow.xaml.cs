@@ -19,6 +19,10 @@ namespace Suzuki_André_Pendu
     /// </summary>
     public partial class InfoWindow : Window
     {
+        /// <summary>
+        /// Constructor for the InfoWindow
+        /// Simply Updates the information in the window everytime it's opened
+        /// </summary>
         public InfoWindow()
         {
             InitializeComponent();
