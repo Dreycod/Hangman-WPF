@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WpfAnimatedGif;
 
 namespace Suzuki_André_Pendu.Classes
 {
@@ -28,7 +30,9 @@ namespace Suzuki_André_Pendu.Classes
 
         public int time = 0;
         public bool GameEnded = false;
+        public bool isMusicPlaying = false;
         // Classes 
+        public MediaPlayer MusicPlayer = new MediaPlayer();
         private ButtonManager _ButtonManager;
         private WordManager _WordManager;
         private TimeManager _TimeManager;
@@ -44,12 +48,70 @@ namespace Suzuki_André_Pendu.Classes
         }
         //---------------------------------- Main Functions  -----------------------------------
 
+
+        /// <summary>
+        /// Toggles the music.
+        /// </summary>
+        public void ToggleMusic()
+        {
+            if (isMusicPlaying == false)
+            {
+                MusicPlayer.Volume = 0.2f;
+                MusicPlayer.Open(new Uri(@"Resources/Music.wav", UriKind.Relative));
+                MusicPlayer.Play();
+                isMusicPlaying = true;
+            }
+            else
+            {
+                MusicPlayer.Stop();
+                isMusicPlaying = false;
+            }
+        }
+
+        // Create a function that plays 2 types of music, wins and losses
+        public void PlaySoundEffect(string type = "")
+        {
+            MediaPlayer SFX_Player = new MediaPlayer();
+            SFX_Player.Volume = 0.4f;
+            Uri soundEffectPath;
+
+            switch (type)
+            {
+                case "win":
+                    soundEffectPath = new Uri(@"Resources/Win.wav", UriKind.Relative);
+                    break;
+                case "loss":
+                    soundEffectPath = new Uri(@"Resources/Loss.wav", UriKind.Relative);
+                    break;
+                case "correct":
+                    soundEffectPath = new Uri(@"Resources/Correct.wav", UriKind.Relative);
+                    break;
+                case "wrong":
+                    soundEffectPath = new Uri(@"Resources/Wrong.wav", UriKind.Relative);
+                    break;
+                case "popup":
+                    soundEffectPath = new Uri(@"Resources/Popup.wav", UriKind.Relative);
+                    break;
+                case "Tick":
+                    SFX_Player.Volume = 0.2f;
+                    soundEffectPath = new Uri(@"Resources/Tick.wav", UriKind.Relative);
+                    break;
+                default:
+                    soundEffectPath = new Uri(@"Resources/Click.wav", UriKind.Relative);
+                    break;
+            }
+
+            SFX_Player.Open(soundEffectPath);
+            SFX_Player.Play();
+        }
+
         /// <summary>
         /// Creates a new game by initializing new data, resets data if IsNextGame is false
         /// </summary>
         /// <param name="IsNextGame">Decides if game data should be resetted or not </param>
         public void NewGame(bool IsNextGame)
         {
+            ToggleMusic();
             // Reinitalization + Setup
             GameEnded = false;
 
@@ -96,10 +158,12 @@ namespace Suzuki_André_Pendu.Classes
 
             if (_WordManager.FindLetter(content))
             {
+                PlaySoundEffect("correct");
                 button.Background = _mainWindow.TryFindResource("Correct_Btn") as SolidColorBrush;
             }
             else
             {
+                PlaySoundEffect("wrong");
                 button.Background = _mainWindow.TryFindResource("Wrong_Btn") as SolidColorBrush;
             }
 
@@ -115,6 +179,8 @@ namespace Suzuki_André_Pendu.Classes
         {
             if (LettersLeft == 0 | Vies == 0 | IsFromTimer)
             {
+
+                ToggleMusic();
                 GameEnded = true;
                 _ButtonManager.EnableKeyboard(false);
                 _ButtonManager.EnableSideBar(false);
@@ -128,10 +194,12 @@ namespace Suzuki_André_Pendu.Classes
                     IsWin = true;
                     Wins += 1;
                     ScoreToAdd = 100;
+                    PlaySoundEffect("win");
                     Message = "You Won! Congratulations!";
                 }
                 else
                 {
+                    PlaySoundEffect("loss");    
                     Losses += 1;
                 }
 
@@ -170,7 +238,7 @@ namespace Suzuki_André_Pendu.Classes
         public void UpdateVies()
         {
             Uri resourceUri = new Uri(@"Resources/Hangman/" + (StartVies - Vies).ToString() + ".gif", UriKind.Relative);
-            _mainWindow.Img_Pendu.Source = new BitmapImage(resourceUri);
+            ImageBehavior.SetAnimatedSource(_mainWindow.Img_Pendu, new BitmapImage(resourceUri));
             _mainWindow.TB_Lifes.Text = "Lifes: " + Vies.ToString();
         }
 
@@ -196,6 +264,7 @@ namespace Suzuki_André_Pendu.Classes
         /// <param name="Value">Win or Loss </param>
         private void Endgame_popup(string Message, bool Value)
         {
+            PlaySoundEffect("popup");
             Endgame endgame = new Endgame(this);
             endgame.Show();
             endgame.Message_TB.Text = Message;

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:Suzuki_André_Pendu"
         mc:Ignorable="d"
         Title="Hangman: The French" Height="450" Width="800"
@@ -56,7 +57,7 @@
                 <!-- Column 0 -->
             <ProgressBar Name="Timer_ProgressBar" Grid.Column="1" Value="10" Minimum="0" Maximum="60" Margin="40,0,40,50" Style="{StaticResource Timer_Bar}"/>
                 <!-- Column 1 -->
-            <Image x:Name="Img_Pendu" Grid.Column="2" Grid.RowSpan="2" Source="./Resources/Hangman/0.gif"/>
+            <Image gif:ImageBehavior.RepeatBehavior="10x" gif:ImageBehavior.AnimatedSource="./Resources/Hangman/0.gif" x:Name="Img_Pendu" Grid.Column="2" Grid.RowSpan="2" />
             <!-- Row 1 -->
             <TextBlock Name="TB_Display" Grid.Column="1" Grid.Row="1" Text="Test" Style="{StaticResource Main_TB}"/>
         </Grid>

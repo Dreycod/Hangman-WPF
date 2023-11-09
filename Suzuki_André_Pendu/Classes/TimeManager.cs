@@ -44,9 +44,10 @@ namespace Suzuki_André_Pendu.Classes
         /// </summary>
         private void Timer_Tick(object sender, EventArgs e)
         {
+            _GameManager.PlaySoundEffect("Tick");
+
             if (_mainWindow.Timer_ProgressBar.Value >= _mainWindow.Timer_ProgressBar.Maximum | _GameManager.GameEnded)
             {
-
                 StopTimer();
                 isTimerRunning = false;
 

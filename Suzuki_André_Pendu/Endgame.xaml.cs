@@ -103,6 +103,7 @@ namespace Suzuki_André_Pendu
         private void NewRound_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
+            _GameManager.PlaySoundEffect();
 
             if (button.Name == "NextGame_Btn")
             {

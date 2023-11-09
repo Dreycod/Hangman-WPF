@@ -61,6 +61,7 @@ namespace Suzuki_André_Pendu
             Button button = (Button)sender;
             string lettre = button.Content.ToString();
             _GameManager.Validate_Content(lettre);
+            _GameManager.PlaySoundEffect();
         }
 
         /// <summary>
@@ -70,7 +71,9 @@ namespace Suzuki_André_Pendu
         private void NewGame_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
+            _GameManager.isMusicPlaying = false;
             _GameManager.NewGame(false);
+            _GameManager.PlaySoundEffect();
         }
 
         /// <summary>
@@ -95,6 +98,7 @@ namespace Suzuki_André_Pendu
             _GameManager.Vies -= 2;
             _GameManager.UpdateVies();
             _GameManager.Validate_Content(letter);
+            _GameManager.PlaySoundEffect("default");
         }
 
         /// <summary>
@@ -114,6 +118,7 @@ namespace Suzuki_André_Pendu
             {
                 btn.Background = this.TryFindResource("Default_Btn") as SolidColorBrush;
             }
+            _GameManager.PlaySoundEffect();
         }
 
         /// <summary>
@@ -122,19 +127,23 @@ namespace Suzuki_André_Pendu
         /// </summary>
         private void Info_Click(object sender, RoutedEventArgs e)
         {
+            _GameManager.PlaySoundEffect("default");
+
             Button btn = (Button)sender;
             btn.IsEnabled = false;
             btn.Background = this.TryFindResource("Disabled_Btn") as SolidColorBrush;
 
             InfoWindow infoWindow = new InfoWindow();   
             infoWindow.Show();
-            infoWindow.Closed += InfoWindow_Closed; 
+            infoWindow.Closed += InfoWindow_Closed;
+            _GameManager.PlaySoundEffect("popup");
 
             void InfoWindow_Closed(object sender, EventArgs e)
             {
                 btn.IsEnabled = true;
                 btn.Background = this.TryFindResource("Default_Btn") as SolidColorBrush;
             }
+           
         }
 
         //---------------------------------- Misc Functions -----------------------------------
